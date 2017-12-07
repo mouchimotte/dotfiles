@@ -3,6 +3,12 @@
 #
 SSH_REAGENT_AGENT_LIST_FILE="$HOME/.ssh/ssh_reagent_agent_list"
 
+#
+# Alias of ssh-agent to add option
+# here we force the hmac sha256
+#
+alias ssh-agent='ssh-agent -E sha256'
+
 # Function to test the existence of file
 ssh-reagent-ensure-file-exists ()
 {
@@ -27,7 +33,7 @@ ssh-reagent-add-named-agent ()
     fi
 
     #start a new agent and get auth_sock and pid informations
-    infos="$(ssh-agent -E sha256)"
+    infos="$(ssh-agent)"
 
     #extract auth_sock and pid informations
     ssh_auth_sock="$(echo $infos | cut -d= -f2 | cut -d';' -f1)"
