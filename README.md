@@ -1,8 +1,5 @@
-# dotfiles
-Files containing some helpers in bash or other 
-
-## Bashrc
-All files who will help your daily use of `bash` are in folder `bashrc/`.
+# bashrc/
+You will find in this folder all files who will help your daily use of `bash`.
 All files have `.sh` extension because they can be used standealone.
 
 ### Using it
@@ -20,8 +17,8 @@ Then reload your bashrc by hitting:
 $ . ~/.bashrc
 ```
 
-## Inputrc
-This section contains one file who is helping you to browse speedly your history.
+# inputrc/
+This folder contains one file who is helping you to browse speedly your history.
 
 ### Installation
 Copy/Paste the `.inputrc` file into yout home folder (ex: `/home/mouchi/` for me).
