@@ -1,3 +1,6 @@
+The idea come from Julien Palard. The purpose was to pull his own dotfiles from the web to anywhere (ex: all new server he put online).
+His own repository: https://github.com/JulienPalard/dotfiles.
+
 # bashrc/
 You will find in this folder all files who will help your daily use of `bash`.
 All files have `.sh` extension because they can be used standealone.
