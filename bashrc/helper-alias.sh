@@ -1,7 +1,9 @@
 # Generic alias
-alias l='ls -lah --color=auto'
+alias ls='ls --color=auto'
+alias l='ls -lah'
 alias rm='rm -i'
 alias mv='mv -i'
+alias cp='mv -i'
 alias grep='LANG=C grep --color=auto'
 alias grepr='grep -rn'
 alias emacs='emacs -nw'
