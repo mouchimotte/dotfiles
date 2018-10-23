@@ -9,8 +9,9 @@ All files have `.sh` extension because they can be used standealone.
 Add those lines to your `.bashrc`
 
 ```bash
-if [ -d ~/projects/dotfiles/bashrc/ ]; then
-    for file in $(ls ~/projects/dotfiles/bashrc/*.sh); do . $file; done
+PATH_TO_DOTFILES="~/path/to/dotfiles/"
+if [ -d "$PATH_TO_DOTFILES/bashrc/" ]; then
+    for file in $(ls "$PATH_TO_DOTFILES/bashrc/*.sh"); do . $file; done
 fi
 ```
 
@@ -24,9 +25,16 @@ $ . ~/.bashrc
 This folder contains one file who is helping you to browse speedly your history.
 
 ### Installation
-Copy/Paste the `.inputrc` file into yout home folder (ex: `/home/mouchi/` for me).
-
-*Maybe you have to restart your session to view change.*
+The file import is managed by a `./bashrc/3-load-dependencies.sh` file.
 
 ### How to
 Then, when you start typing some already typed command in your terminal, you can browse all your history who started by the typed characters with arrows up and down.
+
+# git/
+This folder contains my own Git config.
+
+### Installation
+The file import is managed by a `./bashrc/3-load-dependencies.sh` file.
+
+### How to
+See the content of file to know which config is set by default and which alias have been available now.
