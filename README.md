@@ -9,9 +9,10 @@ All files have `.sh` extension because they can be used standealone.
 Add those lines to your `.bashrc`
 
 ```bash
-PATH_TO_DOTFILES="~/path/to/dotfiles/"
-if [ -d "$PATH_TO_DOTFILES/bashrc/" ]; then
-    for file in $(ls "$PATH_TO_DOTFILES/bashrc/*.sh"); do . $file; done
+if ! [ -f ~/.bashrc-init.sh ];
+then
+    curl -s https://raw.githubusercontent.com/mouchimotte/dotfiles/master/bashrc-init.sh > ~/.bashrc-init.sh
+    . ~/.bashrc-init.sh
 fi
 ```
 
