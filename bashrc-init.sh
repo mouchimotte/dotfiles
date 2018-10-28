@@ -6,8 +6,7 @@ function bashrc_reinstall
         rm -f ~/.bashrc-init.sh
     fi
     curl -s https://raw.githubusercontent.com/mouchimotte/dotfiles/master/bashrc-init.sh > ~/.bashrc-init.sh
-    . ~/.bashrc-init.sh
-    bashrc_update
+    . ~/.bashrc
 }
 
 # Init the git clone of dotfiles
