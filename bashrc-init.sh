@@ -15,13 +15,17 @@ function bashrc_init
 {
     if [ -z "$PATH_TO_DOTFILES" ]; then
         PATH_TO_DOTFILES="/tmp/dotfiles/"
-        mkdir $PATH_TO_DOTFILES
-        cd $PATH_TO_DOTFILES
-        git init
-        git remote add -f origin https://github.com/mouchimotte/dotfiles.git
-        git config core.sparseCheckout true
-        echo "bashrc/" >> .git/info/sparse-checkout
-        git pull --depth=1 origin master
+        if [ -d $PATH_TO_DOTFILES ]; then
+            bashrc_update
+        else
+            mkdir $PATH_TO_DOTFILES
+            cd $PATH_TO_DOTFILES
+            git init
+            git remote add -f origin https://github.com/mouchimotte/dotfiles.git
+            git config core.sparseCheckout true
+            echo "bashrc/" >> .git/info/sparse-checkout
+            git pull --depth=1 origin master
+        fi
     fi
 }
 
