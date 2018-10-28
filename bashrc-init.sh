@@ -46,6 +46,6 @@ function bashrc_source
 function bashrc_update
 {
     cd $PATH_TO_DOTFILES
-    git pull --rebase
+    git pull origin master
     bashrc_source
 }
