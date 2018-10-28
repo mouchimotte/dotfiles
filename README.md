@@ -14,9 +14,10 @@ then
     curl -s https://raw.githubusercontent.com/mouchimotte/dotfiles/master/bashrc-init.sh > ~/.bashrc-init.sh
     . ~/.bashrc-init.sh
 fi
+bashrc_source
 ```
 
-Then reload your bashrc by hitting:
+Then (if necessary) reload your bashrc by hitting:
 
 ```bash
 $ . ~/.bashrc
