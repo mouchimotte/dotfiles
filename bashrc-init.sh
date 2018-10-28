@@ -25,6 +25,7 @@ function bashrc_init
             git config core.sparseCheckout true
             echo "bashrc/" >> .git/info/sparse-checkout
             git pull --depth=1 origin master
+            cd -
         fi
     fi
 }
@@ -47,5 +48,6 @@ function bashrc_update
 {
     cd $PATH_TO_DOTFILES
     git pull origin master
+    cd -
     bashrc_source
 }
