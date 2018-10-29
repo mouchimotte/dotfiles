@@ -9,29 +9,6 @@ function bashrc_reinstall
     . ~/.bashrc
 }
 
-# Init the git clone of dotfiles
-function bashrc_init
-{
-    if [ -z "$PATH_TO_DOTFILES" ]; then
-        PATH_TO_DOTFILES="/tmp/dotfiles/"
-        if [ -d $PATH_TO_DOTFILES ]; then
-            bashrc_update
-        else
-            mkdir $PATH_TO_DOTFILES
-            cd $PATH_TO_DOTFILES
-            git init
-            git remote add -f origin https://github.com/mouchimotte/dotfiles.git
-            git config core.sparseCheckout true
-            echo "bashrc/" >> .git/info/sparse-checkout
-            git pull --depth=1 origin master
-            cd -
-        fi
-    fi
-}
-
-# Auto-init for first start
-bashrc_init
-
 # Source all files
 function bashrc_source
 {
@@ -50,3 +27,27 @@ function bashrc_update
     cd -
     bashrc_source
 }
+
+# Init the git clone of dotfiles
+function bashrc_init
+{
+    if [ -z "$PATH_TO_DOTFILES" ]; then
+        PATH_TO_DOTFILES="/tmp/dotfiles/"
+    fi
+
+    if [ -d $PATH_TO_DOTFILES ]; then
+        bashrc_update
+    else
+        mkdir $PATH_TO_DOTFILES
+        cd $PATH_TO_DOTFILES
+        git init
+        git remote add -f origin https://github.com/mouchimotte/dotfiles.git
+        git config core.sparseCheckout true
+        echo "bashrc/" >> .git/info/sparse-checkout
+        git pull --depth=1 origin master
+        cd -
+    fi
+}
+
+# Auto-init for first start
+bashrc_init
