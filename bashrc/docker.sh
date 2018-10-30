@@ -32,3 +32,13 @@ function dcbash ()
 {
     dcexec "$1" bash
 }
+
+# Refresh named container
+
+function dcrefresh ()
+{
+    dc stop "$1" && \
+        echo "y" | dc rm "$1" && \
+        d volume rm $(d volume ls -q | grep "$1") && \
+        dcup --build "$1"
+}
