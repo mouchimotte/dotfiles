@@ -25,7 +25,7 @@ function bashrc_update
     cd $PATH_TO_DOTFILES
     git pull origin master
     cd -
-    bashrc_source
+    . ~/.bashrc
 }
 
 # Init the git clone of dotfiles
