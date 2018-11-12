@@ -35,10 +35,8 @@ function bashrc_init
         PATH_TO_DOTFILES="/tmp/dotfiles/"
     fi
 
-    if [ -d $PATH_TO_DOTFILES ]; then
-        bashrc_update
-    else
-        mkdir $PATH_TO_DOTFILES
+    if ! [ -d $PATH_TO_DOTFILES ]; then
+        mkdir -p $PATH_TO_DOTFILES
         cd $PATH_TO_DOTFILES
         git init
         git remote add -f origin https://github.com/mouchimotte/dotfiles.git
