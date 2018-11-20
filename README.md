@@ -9,11 +9,11 @@ All files have `.sh` extension because they can be used standealone.
 Add those lines to your `.bashrc`
 
 ```bash
-if ! [ -f ~/.bashrc-init.sh ];
-then
+PATH_TO_DOTFILES="$HOME/.dotfiles/"
+if ! [ -f ~/.bashrc-init.sh ]; then
     curl -s https://raw.githubusercontent.com/mouchimotte/dotfiles/master/bashrc-init.sh > ~/.bashrc-init.sh
-    . ~/.bashrc-init.sh
 fi
+. ~/.bashrc-init.sh
 bashrc_source
 ```
 
@@ -21,6 +21,21 @@ Then (if necessary) reload your bashrc by hitting:
 
 ```bash
 $ . ~/.bashrc
+```
+
+### Reinstall it
+
+It's the way to force the update of `bashrc-init.sh`, and by the way update files using git.
+
+```bash
+$ bashrc_reinstall
+```
+
+### Update it
+
+The automatic update is desactivate, so for update manually files:
+```bash
+$ bashrc_update
 ```
 
 # inputrc/
