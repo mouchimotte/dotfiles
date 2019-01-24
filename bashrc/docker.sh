@@ -37,8 +37,15 @@ function dcbash ()
 
 function dcrefresh ()
 {
-    dc stop "$1" && \
-        echo "y" | dc rm "$1" && \
-        d volume rm $(d volume ls -q | grep "$1") && \
-        dcup --build "$1"
+    CONTAINER_ID=$(d ps -a | grep "$1" | cut -f1 -d' ')
+    VOLUME_ID=""
+    if [ "$CONTAINER_ID" != "" ]; then
+        VOLUME_ID=$(d inspect -f '{{ .Mounts }}' "$CONTAINER_ID" | cut -f2 -d' ')
+    fi
+    dc stop "$1"
+    echo "y" | dc rm "$1"
+    if [ "$VOLUME_ID" != "" ]; then
+        d volume rm "$VOLUME_ID"
+    fi
+    dcup --build "$1"
 }
