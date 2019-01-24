@@ -40,7 +40,7 @@ function dcrefresh ()
     CONTAINER_ID=$(d ps -a | grep "$1" | cut -f1 -d' ')
     VOLUME_ID=""
     if [ "$CONTAINER_ID" != "" ]; then
-        VOLUME_ID=$(d inspect -f '{{ .Mounts }}' "$CONTAINER_ID" | cut -f2 -d' ')
+        VOLUME_ID=$(d inspect -f '{{ .Mounts }}' "$CONTAINER_ID" | sed 's/.*volume //' | cut -f1 -d' ')
     fi
     dc stop "$1"
     echo "y" | dc rm "$1"
