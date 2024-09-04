@@ -12,12 +12,9 @@ export HISTFILESIZE=-1
 
 # Append rather than overwrite the history
 shopt -s histappend
-shopt -s histappend histreedit histverify
+shopt -s histreedit
+shopt -s histverify
 shopt -s no_empty_cmd_completion
-# Append immediately (right after being executed) instead of wait the session is terminated
-#PROMPT_COMMAND='$PROMPT_COMMAND; history -a'
-#PROMPT_COMMAND='history -a'
-# !!! uncompatible with current implem of _git_ps1
 
 # Control cmd who a registered in history (default ignoreboth):
 # - ignorespace: don’t save lines which begin with a <space> character
@@ -27,3 +24,19 @@ shopt -s no_empty_cmd_completion
 export HISTCONTROL=ignoreboth:erasedups
 # Add the date in the history file to know when it have been executed last time
 # export HISTTIMEFORMAT="%F %T "
+
+# history -n reads all lines from $HISTFILE that may
+#            have occurred in a different terminal since the last carriage return
+# history -w writes the updated buffer to $HISTFILE
+# history -c wipes the buffer so no duplication occurs
+# history -r re-reads the $HISTFILE, appending to the now blank buffer
+export PROMPT_COMMAND="history -n; history -w; history -c; history -r"
+
+# the awk script stores the first occurrence of each line it encounters.
+#     tac reverses it, and then reverses it back so that it can be saved
+#     with the most recent commands still most recent in the history
+tac "$HISTFILE" | awk '!x[$0]++' > /tmp/histfile  && tac /tmp/histfile > "$HISTFILE"
+
+# rm the /tmp file
+rm -f /tmp/histfile
+
