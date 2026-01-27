@@ -1,6 +1,6 @@
 function activate ()
 {
-    if ! test -f 'venv/bin/activate' && ! test -f 'bin/activate' && ! test -f 'activate'
+    if ! test -f 'venv/bin/activate' && ! test -f '.venv/bin/activate'
     then
         echo_red "No binary 'activate' found here !"
         return 1
@@ -14,11 +14,9 @@ function activate ()
     if test -f 'venv/bin/activate'
     then
         . venv/bin/activate
-    elif test -f 'bin/activate'
+    elif test -f '.venv/bin/activate'
     then
-        . bin/activate
-    else
-        . activate
+        . .venv/bin/activate
     fi
 }
 

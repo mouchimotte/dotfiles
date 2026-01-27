@@ -11,10 +11,15 @@ export HISTSIZE=-1
 export HISTFILESIZE=-1
 
 # Append rather than overwrite the history
+# > BASHRC
 shopt -s histappend
-shopt -s histreedit
 shopt -s histverify
 shopt -s no_empty_cmd_completion
+shopt -s histreedit
+
+# > ZSH: man zshoptions
+# setopt APPEND_HISTORY
+# setopt INC_APPEND_HISTORY
 
 # Control cmd who a registered in history (default ignoreboth):
 # - ignorespace: don’t save lines which begin with a <space> character
@@ -35,8 +40,9 @@ export PROMPT_COMMAND="history -n; history -w; history -c; history -r"
 # the awk script stores the first occurrence of each line it encounters.
 #     tac reverses it, and then reverses it back so that it can be saved
 #     with the most recent commands still most recent in the history
-tac "$HISTFILE" | awk '!x[$0]++' > /tmp/histfile  && tac /tmp/histfile > "$HISTFILE"
+# tac "$HISTFILE" | awk '!x[$0]++' > /tmp/histfile  && tac /tmp/histfile > "$HISTFILE"
 
 # rm the /tmp file
-rm -f /tmp/histfile
+# it is commented to keep a backup
+# rm -f /tmp/histfile
 

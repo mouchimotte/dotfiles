@@ -18,34 +18,19 @@ function dpurge ()
     echo y | docker system prune
 }
 
-##
-# DOCKER COMPOSE
-##
-
-alias dc="docker-compose"
-alias dcps="dc ps"
-alias dcup="dc up -d"
-alias dcdown="dc down"
-alias dcexec="docker-compose exec"
-
-function dcbash ()
-{
-    dcexec "$1" bash
-}
-
 # Refresh named container
 
 function dcrefresh ()
 {
-    CONTAINER_ID=$(d ps -a | grep "$1" | cut -f1 -d' ')
+    CONTAINER_ID=$(docker ps -a | grep "$1" | cut -f1 -d' ')
     VOLUME_ID=""
     if [ "$CONTAINER_ID" != "" ]; then
-        VOLUME_ID=$(d inspect -f '{{ .Mounts }}' "$CONTAINER_ID" | sed 's/.*volume //' | cut -f1 -d' ')
+        VOLUME_ID=$(docker inspect -f '{{ .Mounts }}' "$CONTAINER_ID" | sed 's/.*volume //' | cut -f1 -d' ')
     fi
-    dc stop "$1"
-    echo "y" | dc rm "$1"
+    docker compose stop "$1"
+    echo "y" | d compose rm "$1"
     if [ "$VOLUME_ID" != "" ]; then
-        d volume rm "$VOLUME_ID"
+        docker volume rm "$VOLUME_ID"
     fi
-    dcup --build "$1"
+    docker compose up --build "$1"
 }
